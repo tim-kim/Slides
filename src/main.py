@@ -1,25 +1,42 @@
+import os
 import library.scraper as scraper
+import library.genius as genius
+from flask import Flask, render_template
+from flask_socketio import SocketIO, emit
 from library.config import *
-from pptx import Presentation
-from pptx.enum.shapes import MSO_SHAPE
-from pptx.enum.dml import MSO_THEME_COLOR
-from pptx.enum.text import MSO_ANCHOR, MSO_AUTO_SIZE
-from pptx.util import Inches, Pt
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+@app.route('/')
+def main():
+    return render_template('index.html',
+                           my_string="Wheeeee!",
+                           my_list=[0,1,2,3,4,5])
+
+@socketio.on('my event', namespace='/test')
+def test_message(message):
+    emit('my response', {'data': message['data']})
+
+@socketio.on('my broadcast event', namespace='/test')
+def test_message(message):
+    emit('my response', {'data': message['data']}, broadcast=True)
+
+@socketio.on('connect', namespace='/test')
+def test_connect():
+    emit('my response', {'data': 'Connected'})
+
+@socketio.on('disconnect', namespace='/test')
+def test_disconnect():
+    print('Client disconnected')
+
 
 if __name__ == '__main__':
-    prs = Presentation()
-    
-    for song, url in LIBRARY.items():
-        page = scraper.get_lyrics_properties(song, url)
-        list = scraper.generate_lyrics_tree(page)
-    
-        slide_layout = prs.slide_layouts[0]
-        slide = prs.slides.add_slide(slide_layout)
-        title = slide.shapes.title
-        title.text = song
-    
-        for block in list:
-            block_slide = prs.slides.add_slide(slide_layout)
-            title = block_slide.shapes.title
-            title.text = block
-    prs.save('set.pptx')
+    # app.run(debug=True)
+
+    genius.get_songs()
+
+    # for song, url in LIBRARY.items():
+    #     page = scraper.get_lyrics_properties(song, url)
+    #     list = scraper.generate_lyrics_tree(page)

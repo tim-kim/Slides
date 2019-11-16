@@ -24,8 +24,9 @@ VERSION = '0.1.0'
 REQUIRED = [
     'requests',
     'html2text',
-    'python-pptx',
-    'odfpy'
+    'lyricsgenius',
+    'Flask',
+    'Flask-SocketIO'
 ]
 
 # What packages are optional?
