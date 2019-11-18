@@ -25,8 +25,11 @@ REQUIRED = [
     'requests',
     'html2text',
     'lyricsgenius',
-    'Flask',
-    'Flask-SocketIO'
+    'flask',
+    'flask-socketiO',
+    'gevent',
+    'speechrecognition',
+    'pydub'
 ]
 
 # What packages are optional?

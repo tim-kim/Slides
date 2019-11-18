@@ -11,48 +11,17 @@
     <script src="{{ url_for('static',    filename='js/main.js') }}"></script>
   </head>
   <body>
-    <div class="container">
-      <h2>This is part of my base template</h2>
-      <br>
-      {% block content %}{% endblock %}
-      <br>
-      <h2>This is part of my base template</h2>
+    <div class="center-block">
+      <h3 style='color: #ccc;font-size: 30px;'>No message yet..</h3>
+      <div class="message_holder"></div>
+      <div class="container vertical-center">
+        <form action="" method="POST">
+          <input type="text" class="username" placeholder="User Name"/>
+          <input type="text" class="message" placeholder="Messages"/>
+          <input type="submit"/>
+        </form>
+      </div>
+    
     </div>
-
-
-    <h1>Flask-SocketIO Test</h1>
-    <p>Async mode is: <b>{{ async_mode }}</b></p>
-    <p>Average ping/pong latency: <b><span id="ping-pong"></span>ms</b></p>
-    <h2>Send:</h2>
-    <form id="emit" method="POST" action='#'>
-        <input type="text" name="emit_data" id="emit_data" placeholder="Message">
-        <input type="submit" value="Echo">
-    </form>
-    <form id="broadcast" method="POST" action='#'>
-        <input type="text" name="broadcast_data" id="broadcast_data" placeholder="Message">
-        <input type="submit" value="Broadcast">
-    </form>
-    <form id="join" method="POST" action='#'>
-        <input type="text" name="join_room" id="join_room" placeholder="Room Name">
-        <input type="submit" value="Join Room">
-    </form>
-    <form id="leave" method="POST" action='#'>
-        <input type="text" name="leave_room" id="leave_room" placeholder="Room Name">
-        <input type="submit" value="Leave Room">
-    </form>
-    <form id="send_room" method="POST" action='#'>
-        <input type="text" name="room_name" id="room_name" placeholder="Room Name">
-        <input type="text" name="room_data" id="room_data" placeholder="Message">
-        <input type="submit" value="Send to Room">
-    </form>
-    <form id="close" method="POST" action="#">
-        <input type="text" name="close_room" id="close_room" placeholder="Room Name">
-        <input type="submit" value="Close Room">
-    </form>
-    <form id="disconnect" method="POST" action="#">
-        <input type="submit" value="Disconnect">
-    </form>
-    <h2>Receive:</h2>
-    <div id="log"></div>
   </body>
 </html>

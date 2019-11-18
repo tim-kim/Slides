@@ -38,7 +38,6 @@ def get_songs():
                         s.add(entity)
                 # Add the second half of big block to slides
                 slides.append('\n'.join(block[dupe_index:]))
-                print(slides[-1])
             else:
                 slides.append('\n'.join(block))
 
