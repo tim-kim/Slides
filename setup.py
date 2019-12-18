@@ -22,14 +22,15 @@ VERSION = '0.1.0'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
+    'python-pptx',
     'requests',
     'html2text',
     'lyricsgenius',
     'flask',
-    'flask-socketiO',
-    'gevent',
-    'speechrecognition',
-    'pydub'
+    'flask-socketiO'
+    # 'gevent',
+    # 'speechrecognition',
+    # 'pydub'
 ]
 
 # What packages are optional?
